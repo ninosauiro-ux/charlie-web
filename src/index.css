@@ -1,0 +1,233 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700&family=Open+Sans:wght@400;600&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Charlie Chocolate Design System */
+    --color-primary: 18 16% 16%;
+    --color-primary-hover: 14 27% 11%;
+    --color-secondary: 16 51% 47%;
+    --color-secondary-hover: 16 51% 40%;
+    --color-accent: 42 58% 58%;
+    --color-accent-hover: 42 52% 54%;
+    --color-berry: 344 58% 40%;
+    --color-cream: 30 100% 95%;
+    --color-ivory: 34 100% 98%;
+    --color-surface: 0 0% 100%;
+    --color-surface-soft: 24 48% 91%;
+    --color-bg-dark: 18 33% 5%;
+    --color-text-primary: 222 84% 5%;
+    --color-text-secondary: 215 16% 47%;
+    --color-text-on-dark: 30 100% 97%;
+
+    /* Map to shadcn variables */
+    --background: 34 100% 98%;
+    --foreground: 222 84% 5%;
+    --card: 0 0% 100%;
+    --card-foreground: 222 84% 5%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 222 84% 5%;
+    --primary: 18 16% 16%;
+    --primary-foreground: 30 100% 97%;
+    --secondary: 16 51% 47%;
+    --secondary-foreground: 30 100% 97%;
+    --muted: 24 48% 91%;
+    --muted-foreground: 215 16% 47%;
+    --accent: 42 58% 58%;
+    --accent-foreground: 18 16% 16%;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 30 20% 88%;
+    --input: 30 20% 88%;
+    --ring: 42 58% 58%;
+    --radius: 1.125rem;
+
+    --sidebar-background: 18 33% 5%;
+    --sidebar-foreground: 30 100% 97%;
+    --sidebar-primary: 42 58% 58%;
+    --sidebar-primary-foreground: 18 16% 16%;
+    --sidebar-accent: 16 51% 47%;
+    --sidebar-accent-foreground: 30 100% 97%;
+    --sidebar-border: 18 20% 14%;
+    --sidebar-ring: 42 58% 58%;
+
+    /* Raw colors for gradients/shadows */
+    --shadow-cocoa: rgba(18,10,8,0.22);
+    --glow-gold: rgba(214,179,93,0.36);
+    --glow-caramel: rgba(182,92,58,0.28);
+    --border-dark: rgba(255,247,238,0.14);
+
+    font-family: 'Open Sans', sans-serif;
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground antialiased;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Montserrat', sans-serif;
+  }
+}
+
+/* Typography system */
+@layer components {
+  .heading-h1 {
+    font-family: 'Montserrat', sans-serif;
+    @apply font-bold leading-none tracking-tight;
+    font-size: 56px;
+    letter-spacing: -0.03em;
+    line-height: 1.05;
+  }
+  .heading-h2 {
+    font-family: 'Montserrat', sans-serif;
+    @apply font-bold;
+    font-size: 40px;
+    letter-spacing: -0.02em;
+    line-height: 1.15;
+  }
+  .heading-h3 {
+    font-family: 'Montserrat', sans-serif;
+    @apply font-semibold;
+    font-size: 28px;
+    line-height: 1.20;
+  }
+  .heading-h4 {
+    font-family: 'Montserrat', sans-serif;
+    @apply font-semibold;
+    font-size: 20px;
+    line-height: 1.30;
+  }
+  .body-large {
+    font-size: 18px;
+    line-height: 1.70;
+  }
+  .body-small {
+    font-size: 14px;
+    line-height: 1.65;
+  }
+  .ui-label {
+    @apply font-semibold uppercase;
+    font-size: 12px;
+    letter-spacing: 0.10em;
+  }
+  .price-text {
+    font-family: 'Montserrat', sans-serif;
+    @apply font-bold;
+    font-size: 20px;
+    letter-spacing: -0.01em;
+  }
+  .nav-link-text {
+    @apply font-semibold;
+    font-size: 14px;
+    letter-spacing: 0.01em;
+  }
+
+  /* Section backgrounds */
+  .section-ivory {
+    background-color: hsl(var(--color-ivory));
+  }
+  .section-cream {
+    background-color: hsl(var(--color-cream));
+  }
+  .section-dark {
+    background-color: hsl(var(--color-bg-dark));
+    color: hsl(var(--color-text-on-dark));
+  }
+  .section-surface {
+    background-color: hsl(var(--color-surface));
+  }
+
+  /* Noise overlay */
+  .noise-overlay {
+    position: relative;
+  }
+  .noise-overlay::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.045'/%3E%3C/svg%3E");
+    background-repeat: repeat;
+    pointer-events: none;
+    z-index: 1;
+  }
+  .noise-overlay > * {
+    position: relative;
+    z-index: 2;
+  }
+
+  /* Gold glow */
+  .gold-glow {
+    box-shadow: 0 18px 45px var(--glow-gold);
+  }
+  .card-shadow {
+    box-shadow: 0 18px 50px rgba(18,10,8,0.12);
+  }
+  .card-shadow-hover {
+    box-shadow: 0 26px 70px rgba(18,10,8,0.18);
+  }
+
+  /* Marquee */
+  @keyframes marquee {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+  .animate-marquee {
+    animation: marquee 22s linear infinite;
+  }
+
+  /* Gradient border */
+  .gradient-border-card {
+    position: relative;
+    overflow: hidden;
+  }
+  .gradient-border-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    padding: 2px;
+    border-radius: inherit;
+    background: conic-gradient(
+      from 0deg,
+      hsl(var(--color-accent)),
+      hsl(var(--color-secondary)),
+      hsl(var(--color-berry)),
+      hsl(var(--color-accent))
+    );
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    opacity: 0;
+    transition: opacity 200ms ease;
+    animation: rotate-border 2.4s linear infinite;
+    z-index: 0;
+  }
+  .gradient-border-card:hover::before {
+    opacity: 1;
+  }
+  @keyframes rotate-border {
+    to { transform: rotate(360deg); }
+  }
+}
+
+/* Responsive typography */
+@media (max-width: 1024px) {
+  .heading-h1 { font-size: 44px; }
+  .heading-h2 { font-size: 34px; }
+  .heading-h3 { font-size: 24px; }
+}
+@media (max-width: 640px) {
+  .heading-h1 { font-size: 34px; }
+  .heading-h2 { font-size: 28px; }
+  .heading-h3 { font-size: 20px; }
+  .heading-h4 { font-size: 18px; }
+  .body-large { font-size: 16px; }
+  .price-text { font-size: 18px; }
+}
